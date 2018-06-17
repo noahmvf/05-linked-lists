@@ -28,6 +28,33 @@ module.exports = class LinkedList {
     }
   }
 
-    //POP: remove the last element and return that element
+    //POP: remove the last element and return that element O(n)
+  pop() {
+    if (!this.head) {
+      return; //if no head just return
+    }
 
+    while(currentNode.next != null) { //while we're not at the end of the linked list, keep moving until we get to the end of the linked list
+      current = current.next;
+    }
+
+    return current;
+  }
+
+  //MAP: 
+  map(callback) {
+    if (typeof callback !== 'function') { 
+      throw new Error('Expected a function');
+    }
+
+    if (!this.length) { 
+      throw new Error('List is empty.');
+    }
+    const result = new LinkedList();
+    for (let i = 0; i < this.length; i++) {
+      result.push(callback(this[i], i));
+    }
+    return result;
+    }
+  }
 }

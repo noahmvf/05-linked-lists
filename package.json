@@ -19,5 +19,8 @@
   "homepage": "https://github.com/noahmvf/03-asyncronous-callbacks#readme",
   "devDependencies": {
     "jest": "^23.1.0"
+  },
+  "dependencies": {
+    "eslint": "^4.19.1"
   }
 }
