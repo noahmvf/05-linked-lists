@@ -1,6 +1,11 @@
-https://travis-ci.org/profile/noahmvf
+https://travis-ci.org/noahmvf/05-linked-lists
 
-Arity - our reader module takes a function with 2 arguments
+in your README, write documentation for you data structures
+your documentation should includes code block examples
+provide instructions for:
 
-Estimated time to completion:
-- I estimate this to take 4 hours to complete
+installing and using your data structure
+
+accessing each method
+
+running your tests

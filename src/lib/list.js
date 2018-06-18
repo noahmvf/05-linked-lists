@@ -28,7 +28,7 @@ module.exports = class LinkedList {
     }
   }
 
-    //POP: remove the last element and return that element O(n)
+//POP: remove the last element and return that element O(n)
   pop() {
     if (!this.head) {
       return; //if no head just return
@@ -41,20 +41,20 @@ module.exports = class LinkedList {
     return current;
   }
 
-  //MAP: 
-  map(callback) {
-    if (typeof callback !== 'function') { 
+//MAP: create a new array with the results of calling a provided function on every element in the calling array 
+  map(list) {
+    if (typeof list !== 'function') { 
       throw new Error('Expected a function');
     }
 
-    if (!this.length) { 
-      throw new Error('List is empty.');
+    if (!this.head) { 
+      return;
     }
     const result = new LinkedList();
     for (let i = 0; i < this.length; i++) {
-      result.push(callback(this[i], i));
+      result.push(list(this[i], i));
     }
     return result;
-    }
   }
+  
 }
