@@ -3,45 +3,66 @@
 const Node = require('./node');
 
 module.exports = class LinkedList {
-  constructor () {
+  constructor() {
     this.head = null;
   }
 
-//REMOVE O(n)
+  // O(1) time complexity, O(n) space complexity
+  insertAtHead(value) {
+    const node = new Node(value);
+    node.next = this.head;
+    this.head = node;
+    return this;
+  }
+
+  // REMOVE O(n)
   remove(value) {
     if (!this.head) {
-      return; //if no head just return
+      throw new Error('The linked list is empty');
     }
 
-    if(head.value === value) {
-      head = head.next; //if we want to delete head, delete
+    if (this.head.value === value) {
+      this.head = this.head.next;
+      return this;
+    }
+
+    let currentNode = this.head;
+    while (currentNode.next) {
+      if (currentNode.next.value === value) {
+        currentNode.next = currentNode.next.next;
+        return this;
+      }
+      currentNode = currentNode.next;
+    }
+
+    return this;
+  }
+
+  // POP: O(n) time complexity, O(1) space complexity
+  pop() {
+    if (!this.head) {
+      return undefined; // if no head just return
+    }
+
+    let poppedNode;
+
+    if (!this.head.next) { 
+      poppedNode = this.head; 
+      this.head = null; 
+      return poppedNode.value;
     }
 
     let currentNode = this.head;
 
-    while(currentNode.next) { //while there's a subsequent node in the list, go down list until next value is the one we want to delete
-      if(currentNode.next.value === value) {
-        currentNode.next = currentNode.next.next;
-        return;
-      }
+    while (currentNode.next.next) {
       currentNode = currentNode.next;
     }
+
+    poppedNode = currentNode.next;
+    currentNode.next = null;
+    return poppedNode.value;
   }
 
-//POP: remove the last element and return that element O(n)
-  pop() {
-    if (!this.head) {
-      return; //if no head just return
-    }
-
-    while(currentNode.next != null) { //while we're not at the end of the linked list, keep moving until we get to the end of the linked list
-      current = current.next;
-    }
-
-    return current;
-  }
-
-//MAP: create a new array with the results of calling a provided function on every element in the calling array 
   map(list) {
     if (typeof list !== 'function') { 
       throw new Error('Expected a function');
@@ -54,7 +75,5 @@ module.exports = class LinkedList {
     for (let i = 0; i < this.length; i++) {
       result.push(list(this[i], i));
     }
-    return result;
   }
-  
-}
+};
