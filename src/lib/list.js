@@ -63,17 +63,16 @@ module.exports = class LinkedList {
     return poppedNode.value;
   }
 
-  map(list) {
-    if (typeof list !== 'function') { 
-      throw new Error('Expected a function');
-    }
+  map(callback) {
+    const mockList = new LinkedList();
+    let currentNode = this.head;
 
-    if (!this.head) { 
-      return;
+    while (currentNode.next) {
+      mockList.insertAtHead(callback(currentNode.value));
+      currentNode = currentNode.next;
     }
-    const result = new LinkedList();
-    for (let i = 0; i < this.length; i++) {
-      result.push(list(this[i], i));
-    }
+    mockList.insertAtHead(callback(currentNode.value));
+
+    return mockList;
   }
 };

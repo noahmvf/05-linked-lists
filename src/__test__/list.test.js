@@ -46,4 +46,19 @@ describe('testing linked list', () => {
     expect(testList.pop()).toBe(1);
     expect(testList.pop()).toBe(2);
   });
+
+  test('#map', () => {
+    testList.insertAtHead(3);
+    testList.insertAtHead(2);
+    testList.insertAtHead(1);
+    
+    const mappedList = testList.map(x => x * 2);
+    expect(mappedList.head.value).toBe(6);
+    expect(mappedList.head.next.value).toBe(4);
+    expect(mappedList.head.next.next.value).toBe(2);
+
+    expect(testList.head.value).toBe(1);
+    expect(testList.head.next.value).toBe(2);
+    expect(testList.head.next.next.value).toBe(3);
+  });
 });
